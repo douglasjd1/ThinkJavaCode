@@ -80,6 +80,7 @@ public class Variables
 
         hour = minute + 1;  // correct
         // minute + 1 = hour;  // compiler error
+
     }
 
 }

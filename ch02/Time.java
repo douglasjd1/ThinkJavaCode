@@ -19,7 +19,7 @@ public class Time
         minute = 55;
         second = 30;
 
-        int timeTaken = ((55-5) * 60) + (15+30);
+        int timeTaken = ((55-50) * 60) + (15+30);
         System.out.println("Seconds it took me to complete this exercise: " + timeTaken);
     }
 }

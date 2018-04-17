@@ -17,10 +17,7 @@ public class Withdrawal
         five = withdrawal / 5;
         withdrawal -= five * 5;
 
-        one = withdrawal / 1;
-        withdrawal -= one * 1;
-
-        System.out.printf(("$20 (%d), $10 (%d), $5 (%d), $1 (%d)"), twenty, ten, five, one);
+        System.out.printf(("$20 (%d), $10 (%d), $5 (%d), $1 (%d)"), twenty, ten, five, withdrawal);
     }
 
 }

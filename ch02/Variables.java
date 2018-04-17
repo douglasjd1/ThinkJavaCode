@@ -1,10 +1,12 @@
 /**
  * Examples from Chapter 2.
  */
-public class Variables {
+public class Variables
+{
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args)
+    {
+        //Josiah
         String message;
         int x;
 
@@ -59,7 +61,7 @@ public class Variables {
 
         System.out.println(0.1 * 10);
         System.out.println(0.1 + 0.1 + 0.1 + 0.1 + 0.1
-                         + 0.1 + 0.1 + 0.1 + 0.1 + 0.1);
+                + 0.1 + 0.1 + 0.1 + 0.1 + 0.1);
 
         double balance = 123.45;  // potential rounding error
         int balance2 = 12345;     // total number of cents

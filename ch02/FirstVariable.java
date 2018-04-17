@@ -4,6 +4,7 @@ public class FirstVariable
     {
         String message = "Initial value";
         System.out.println(message);
+
         message="Modified value";
         System.out.println(message);
     }

@@ -15,6 +15,5 @@ public class IntExtremes
         negativeInt--;
 
         System.out.println(negativeInt);
-
     }
 }

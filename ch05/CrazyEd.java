@@ -4,31 +4,36 @@ public class CrazyEd
 {
     public static void main(String[] args)
     {
-        final int oneInchCost = 2;
-        final int twoInchCost = 4;
-        final int threeInchCost = 6;
-        final int oneInchShip = 2;
-        final int twoInchShip = 2;
-        final int threeInchShip = 4;
-        final int handlingCharge = 5;
-        int initialCost = 0;
-        int totalShip = 0;
-        int totalCost = 0;
+        calculateCost();
 
-        Scanner input = new Scanner(System.in);
+    }
+        private static void calculateCost()
 
-        System.out.print("Welcome to Crazy Ed's Sting Cheese. Would you like your string cheese to have a diameter of ");
-        System.out.println(" 1 inch, 2 inches, or 3 inches (enter 1, 2, or 3)?");
-
-        int cheeseSize = input.nextInt();
-
-        if(cheeseSize > 3 || cheeseSize < 1 )
         {
-            System.out.println("This order is too crazy");
-        }
+            final int oneInchCost = 2;
+            final int twoInchCost = 4;
+            final int threeInchCost = 6;
+            final int oneInchShip = 2;
+            final int twoInchShip = 2;
+            final int threeInchShip = 4;
+            final int handlingCharge = 5;
+            int initialCost = 0;
+            int totalShip = 0;
+            int totalCost = 0;
 
-        else
-        {
+            Scanner input = new Scanner(System.in);
+
+            System.out.print("Welcome to Crazy Ed's Sting Cheese. Would you like your string cheese to have a diameter of ");
+            System.out.println(" 1 inch, 2 inches, or 3 inches (enter 1, 2, or 3)?");
+
+            int cheeseSize = input.nextInt();
+
+            if (cheeseSize > 3 || cheeseSize < 1)
+            {
+                System.out.println("This order is too crazy. Try again.");
+                calculateCost();
+            }
+
             System.out.print("OK, so you want the diameter of your string cheese to be " + cheeseSize + ".");
             System.out.println(" How many yards would you like to order?");
 
@@ -78,7 +83,5 @@ public class CrazyEd
             System.out.println("Cost of shipping: $" + totalShip);
             System.out.println("Handling charge: $" + handlingCharge);
             System.out.println("Total cost: $" + totalCost);
-
         }
-    }
 }

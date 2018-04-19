@@ -74,7 +74,10 @@ public class CrazyEd
 
             totalCost = initialCost + totalShip + handlingCharge;
 
-            System.out.println("Your total, including shipping and handling, is: $" + totalCost);
+            System.out.println("Cost of cheese: $" + initialCost);
+            System.out.println("Cost of shipping: $" + totalShip);
+            System.out.println("Handling charge: $" + handlingCharge);
+            System.out.println("Total cost: $" + totalCost);
 
         }
     }

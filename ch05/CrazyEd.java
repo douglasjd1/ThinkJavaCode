@@ -4,8 +4,10 @@ public class CrazyEd
 {
     public static void main(String[] args)
     {
-        calculateCost();
+        System.out.print("Welcome to Crazy Ed's Sting Cheese. Would you like your string cheese to have a diameter of ");
+        System.out.println(" 1 inch, 2 inches, or 3 inches (enter 1, 2, or 3)?");
 
+        calculateCost();
     }
         private static void calculateCost()
 
@@ -23,14 +25,12 @@ public class CrazyEd
 
             Scanner input = new Scanner(System.in);
 
-            System.out.print("Welcome to Crazy Ed's Sting Cheese. Would you like your string cheese to have a diameter of ");
-            System.out.println(" 1 inch, 2 inches, or 3 inches (enter 1, 2, or 3)?");
-
             int cheeseSize = input.nextInt();
+            input.nextLine();
 
             if (cheeseSize > 3 || cheeseSize < 1)
             {
-                System.out.println("This order is too crazy. Try again.");
+                System.out.println("This order is too crazy. Try a value between 1 and 3.");
                 calculateCost();
             }
 
@@ -38,6 +38,7 @@ public class CrazyEd
             System.out.println(" How many yards would you like to order?");
 
             int cheeseLength = input.nextInt();
+            input.nextLine();
 
             System.out.println("So, you want " + cheeseLength + " yards of " + cheeseSize + " inch diameter string cheese.");
 

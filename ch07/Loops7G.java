@@ -27,7 +27,7 @@ public class Loops7G
         {
             if(i<10)
                 System.out.print(i + "  | ");
-            else if(i>10&&i<100)
+            else if(i>=10&&i<100)
                 System.out.print(i + " | ");
             else
                 System.out.print(i + "| ");

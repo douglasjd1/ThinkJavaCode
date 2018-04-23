@@ -6,7 +6,7 @@ public class While
 
         while(num > 0)
         {
-            System.out.println(num);
+            System.out.println("While countdown: " + num);
             num -= 10;
         }
     }

@@ -3,7 +3,6 @@ public class ForLoop
     public static void main(String[] args)
     {
         int num = 0;
-
         for(int i = 0;i < 4;i++)
         {
             System.out.println("Outer loop i = " + i);

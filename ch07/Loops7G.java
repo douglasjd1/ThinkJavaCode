@@ -8,7 +8,7 @@ public class Loops7G
 
         System.out.println("Enter a number:");
         int maxInput = input.nextInt();
-        System.out.print(0 + " | ");
+        System.out.print(0 + "  | ");
 
         for(int i = 1; i <= maxInput; i++)
         {
@@ -27,9 +27,10 @@ public class Loops7G
         {
             if(i<10)
                 System.out.print(i + "  | ");
-
-            else
+            else if(i>10&&i<100)
                 System.out.print(i + " | ");
+            else
+                System.out.print(i + "| ");
             for(int j = 1; j <= maxInput ; j++)
             {
                 System.out.printf("%5d", i * j);

@@ -39,9 +39,7 @@ public class IntergalacticVendingMachine
                         System.out.println("Thank you for ordering " + food[2]);
                         sales[2]++;
                     }
-                    System.out.println();
-                    printSales(sales, food);
-                    System.out.println();
+
                     if (i < array(userChoice).length - 1)
                     {
                         if (array(userChoice)[i] == '9' && array(userChoice)[i + 1] == '9')
@@ -50,6 +48,7 @@ public class IntergalacticVendingMachine
                         }
                     }
                 }
+            printSales(sales, food);
         }
         System.out.println("Total sales: ");
         for(int i = 0;i<sales.length;i++)

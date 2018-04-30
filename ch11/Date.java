@@ -28,6 +28,20 @@ public class Date
 
     public String getFormattedDate()
     {
-        return "" + year + "-" + month + "-" + day;
+        String formattedDate = "";
+
+        formattedDate += year + "-";
+
+        if(month<10)
+            formattedDate+=0;
+
+        formattedDate+= month + "-";
+
+        if(day<10)
+            formattedDate+=0;
+
+        formattedDate+=day;
+
+        return formattedDate;
     }
 }

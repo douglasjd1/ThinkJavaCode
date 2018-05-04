@@ -9,22 +9,14 @@ public class PetHotel
     }
     static void run()
     {
-        Map<Integer, String> petOccupants = new TreeMap<>();
+        Map<Integer, ArrayList> petOccupants = new TreeMap<>();
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to the pet hotel!");
         System.out.println("Enter one of the following commands: ");
         System.out.println();
-        System.out.println("CheckIn <petName> <roomNumber(100 - 109)>");
-        System.out.println("CheckOut <petName> <roomNumber");
-        System.out.println("Move <fromRoomNumber> <toRoomNumber");
-        System.out.println("Swap <firstRoomNumber> <secondRoomNumber>");
-        System.out.println("MoveUp");
-        System.out.println("MoveDown");
-        System.out.println("Occupancy");
-        System.out.println("CloseForSeason");
-        System.out.println("Exit");
+        printCommands();
 
         boolean go = true;
         final int roomNumberMin = 100;
@@ -40,7 +32,8 @@ public class PetHotel
 
             if(command.equals("CHECKIN"))
             {
-                String pet = commands[1];
+                String petName = commands[1];
+
                 if(commands.length!=3)
                 {
                     System.out.println("That is an invalid entry.");
@@ -61,14 +54,28 @@ public class PetHotel
                     {
                         System.out.println("That is not a valid room number. Try again.");
                         System.out.println();
-                    } else if (isOccupied)
+
+                    }
+
+                    else if (isOccupied)
                     {
-                        System.out.println("Sorry, that room is already occupied. Try again.");
-                    } else
+                        if(petOccupants.get(room).size() > 3)
+                        {
+                            System.out.println("Sorry, there are too many pets in this room already. Pick a different room.");
+                        }
+                        else
+                        {
+                            System.out.println("Checked " + petName + " in to room " + room);
+                            petOccupants.get(room).add(petName);
+                        }
+                    }
+
+                    else
                     {
-                        petOccupants.put(room, pet);
-                        petOccupants.put(room, pet);
-                        System.out.println("Checked " + petOccupants.get(room) + " in to room " + room);
+                        ArrayList<String> petGroup = new ArrayList<>();
+                        petOccupants.put(room, petGroup);
+                        petOccupants.get(room).add(petName);
+                        System.out.println("Checked " + petName + " in to room " + room);
                         System.out.println();
                     }
                 }
@@ -77,9 +84,38 @@ public class PetHotel
 
             else if(command.equals("CHECKOUT"))
             {
+                boolean isInRoom = false;
                 int room = Integer.valueOf(commands[1]);
-                System.out.println("Checked " + petOccupants.get(room) + " out of " + room);
-                petOccupants.remove(Integer.valueOf(commands[1]));
+
+                if(commands.length==2)
+                {
+                    System.out.println("Checked all pets out of room " + room);
+                    petOccupants.remove(Integer.valueOf(commands[1]));
+                }
+
+                else if(commands.length==3)
+                {
+                    String petName = commands[2];
+                    int petIndex = 0;
+                    for(int i = 0;i < petOccupants.get(room).size();i++)
+                    {
+                        if(petOccupants.get(room).get(i).equals(petName))
+                        {
+                            isInRoom = true;
+                            petIndex = i;
+                        }
+                    }
+
+                    if(isInRoom)
+                    {
+                        petOccupants.get(room).remove(petName);
+                        System.out.println(petName + " was checked out from room " + room);
+                    }
+                    else
+                    {
+                        System.out.println("Sorry, that pet is not in that room.");
+                    }
+                }
             }
 
             else if(command.equals("MOVE"))
@@ -132,9 +168,9 @@ public class PetHotel
             else if(command.equals("MOVEUP"))
             {
                 System.out.println("All pets were moved into the next room up.");
-                Map<Integer, String> holder = new TreeMap<>();
+                Map<Integer, ArrayList> holder = new TreeMap<>();
 
-                for(Map.Entry<Integer, String> entry : petOccupants.entrySet())
+                for(Map.Entry<Integer, ArrayList> entry : petOccupants.entrySet())
                 {
                     int room = entry.getKey() + 1;
                     if(room > roomNumberMax)
@@ -149,9 +185,9 @@ public class PetHotel
             else if(command.equals("MOVEDOWN"))
             {
                 System.out.println("All pets were moved into the next room down.");
-                Map<Integer, String> holder = new TreeMap<>();
+                Map<Integer, ArrayList> holder = new TreeMap<>();
 
-                for(Map.Entry<Integer, String> entry : petOccupants.entrySet())
+                for(Map.Entry<Integer, ArrayList> entry : petOccupants.entrySet())
                 {
                     int room = entry.getKey() - 1;
                     if(room < roomNumberMin)
@@ -182,6 +218,11 @@ public class PetHotel
                 System.out.println("All pets have been checked out.");
             }
 
+            else if(command.equals("SHOWCOMMANDS"))
+            {
+                printCommands();
+            }
+
             else if(command.equals("EXIT"))
             {
                 go = false;
@@ -194,7 +235,20 @@ public class PetHotel
             }
 
             if(go)
-                System.out.println("Enter another command:");
+                System.out.println("Enter another command: (To view commands, enter ShowCommands) ");
         }
+    }
+
+    public static void printCommands()
+    {
+        System.out.println("CheckIn <petName> <roomNumber(100 - 109)>");
+        System.out.println("CheckOut <petName> <roomNumber");
+        System.out.println("Move <fromRoomNumber> <toRoomNumber");
+        System.out.println("Swap <firstRoomNumber> <secondRoomNumber>");
+        System.out.println("MoveUp");
+        System.out.println("MoveDown");
+        System.out.println("Occupancy");
+        System.out.println("CloseForSeason");
+        System.out.println("Exit");
     }
 }

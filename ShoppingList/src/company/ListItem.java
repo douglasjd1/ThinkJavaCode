@@ -5,7 +5,7 @@ public class ListItem
     private String name;
     private int quantity = 1;
 
-    ListItem(String name)
+    ListItem(String name, int quantity)
     {
         this.name = name;
         this.quantity = quantity;
@@ -30,4 +30,12 @@ public class ListItem
     {
         quantity--;
     }
+
+    public void addQuantity( int numToAdd)
+    {
+        quantity += numToAdd;
+    }
+
+    public void subQuanitity(int numToSub){ quantity -= numToSub; }
+
 }

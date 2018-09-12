@@ -13,7 +13,7 @@ public class ShoppingList
         run();
     }
 
-    public static void run()
+    private static void run()
     {
         Scanner scanner = new Scanner(System.in);
         boolean go = true;
@@ -26,9 +26,9 @@ public class ShoppingList
         {
             System.out.println("Enter one of the following commands:");
             System.out.println();
-            System.out.println("Add <item name>");
+            System.out.println("Add <item name> <Number of items>");
             System.out.println("Print");
-            System.out.println("Remove <item number>");
+            System.out.println("Remove <item number> <nmber of items>");
             System.out.println("Find");
             System.out.println("Clear");
             System.out.println("Exit");
@@ -37,10 +37,28 @@ public class ShoppingList
             String[] commands = commandLine.split(" ");
             String command = commands[0].toUpperCase();
 
+            int quantity = 0;
+
+            if(commands.length == 3)
+            {
+                try
+                {
+                    quantity = Integer.parseInt(commands[2]);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(commands[2] + " is not a valid number. Try again.");
+                }
+            }
+
             boolean isInList = false;
-            int itemIndex=0;
+            int itemIndex = 0;
             if(command.equals("ADD"))
             {
+                if(commands.length > 3)
+                {
+                    System.out.println("Please enter only the item name and quantity.");
+                }
                 String itemName = commands[1];
                 for(int i = 0;i<shoppingList.size();i++)
                 {
@@ -50,17 +68,29 @@ public class ShoppingList
                         itemIndex = i;
                     }
                 }
-                if(isInList&&shoppingList.get(itemIndex).getQuantity()<6)
+                if(isInList)
                 {
-                    shoppingList.get(itemIndex).quantityUp();
+                    if(commands.length == 2)
+                    {
+                        shoppingList.get(itemIndex).quantityUp();
+                    }
+                    if(commands.length == 3)
+                    {
+                        shoppingList.get(itemIndex).addQuantity(quantity);
+                    }
                 }
-                if(isInList&&shoppingList.get(itemIndex).getQuantity()>=6)
-                {
-                    System.out.println("I'm sorry, Dave, I'm afraid I can't do that.");
-                }
+
                 if(!isInList)
                 {
-                    shoppingList.add(new ListItem(commands[1]));
+                    if(commands.length == 3)
+                    {
+                        shoppingList.add(new ListItem(commands[1], quantity));
+                    }
+
+                    else
+                    {
+                        shoppingList.add(new ListItem(commands[1], quantity));
+                    }
                 }
             }
 
@@ -84,13 +114,22 @@ public class ShoppingList
 
                 for(int i = 1;i<shoppingList.size();i++)
                 {
-                    if(commands[1].equals(String.valueOf(i)));
+                    if(commands[1].equals(String.valueOf(i)))
+                    {
                         isInteger = true;
+                    }
                 }
 
                 if(isInteger)
                 {
-                    index = Integer.parseInt(commands[1]);
+                    try
+                    {
+                        index = Integer.parseInt(commands[1]);
+                    }
+                    catch(Exception e)
+                    {
+                        //do something
+                    }
 
                     if (index < shoppingList.size() || index > shoppingList.size())
                     {
@@ -123,8 +162,6 @@ public class ShoppingList
 
             else if(command.equals("FIND"))
             {
-                isInList = false;
-
                 if(shoppingList.size()==0)
                 {
                     System.out.println("Your shopping list is empty");
